@@ -239,11 +239,11 @@ void SceneHandler::startElement(const XMLCh* const xmlName,
                 Version fileVersion(versionString), currentVersion(MTS_VERSION);
                 if (!fileVersion.isCompatible(currentVersion)) {
                     if (fileVersion < currentVersion) {
-                        throw VersionException(formatString("The requested scene is from an older version of Mitsuba "
+                        XMLLog(EWarn, "The requested scene is from an older version of Mitsuba "
                             "(file version: %s, current version: %s), hence the loading process was stopped. "
                             "Please open the scene from within Mitsuba's graphical user interface (mtsgui) -- "
                             "it will then be upgraded to the current format.",
-                            fileVersion.toString().c_str(), MTS_VERSION), fileVersion);
+                            fileVersion.toString().c_str(), MTS_VERSION, fileVersion);
                     } else {
                         XMLLog(EError, "The requested scene is from an incompatible future version of Mitsuba "
                             "(file version: %s, current version: %s). Giving up.",
